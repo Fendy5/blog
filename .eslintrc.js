@@ -12,6 +12,15 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
-    'no-console': 0
+    'no-console': 0,
+    'vue/html-self-closing': ['error', {
+      html: {
+        void: 'never',
+        normal: 'any',
+        component: 'any'
+      },
+      svg: 'always',
+      math: 'always'
+    }]
   }
 }

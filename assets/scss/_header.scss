@@ -1,0 +1,105 @@
+@import "color";
+@import "variables";
+header {
+  background-color: $theme-color;
+  nav {
+    .logo {
+      font-size: 1.25rem;
+      text-decoration: none;
+    }
+    a {
+      color: $white;
+      font-weight: 600;
+    }
+    .navbar-brand {
+    }
+    .main-menu {
+      ul {
+        display: flex;
+        margin-bottom: 0;
+        justify-content: flex-end;
+        li {
+          position: relative;
+          z-index: 1;
+          margin: 0 5px;
+          &.active{
+            & > a::before{
+              width: 100%;
+            }
+          }
+          list-style: none;
+          .nav-link {
+            padding: 35px 20px;
+            font-size: 14px;
+            &::before {
+              background-color: $white;
+              content: '';
+              height: 2px;
+              width: 0;
+              transition: .3s;
+              position: absolute;
+              bottom: 20px;
+              left: 0;
+            }
+          }
+          &:hover {
+            & > a::before{
+              width: 100%;
+            }
+          }
+        }
+      }
+      @media #{$tab}{
+        display: none;
+      }
+    }
+    .mobile-menu {
+      display: none;
+      position: relative;
+      @media #{$tab}{
+        display: flex;
+        padding: 15px 0;
+      }
+      .menu-btn {
+        position: relative;
+        width: $menu_btn-width;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        .line1 {
+          width: $menu_btn-width;
+          height: 2px;
+          background-color: $white;
+          transition: .3s;
+        }
+        .line2 {
+          width: $menu_btn-width;
+          height: 2px;
+          background-color: $white;
+          transition: .3s;
+        }
+        .line3 {
+          width: $menu_btn-width;
+          height: 2px;
+          background-color: $white;
+          transition: .3s;
+        }
+        &.active {
+          .line1 {
+            transform: rotate(150deg);
+          }
+          .line2 {
+            width: 0;
+          }
+          .line3 {
+            transform: rotate(-150deg);
+          }
+        }
+      }
+      .navbar-nav {
+        position: absolute;
+      }
+    }
+  }
+}
