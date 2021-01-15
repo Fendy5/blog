@@ -32,9 +32,33 @@
             <div class="line2"></div>
             <div class="line3"></div>
           </div>
-          <div class="navbar-nav">
-            <div class="nav-item">123</div>
-          </div>
+          <ul class="nav-bar" :class="{'menu-open':active}">
+            <li class="bar-item">
+              <a href="#">首页</a>
+            </li>
+            <li class="bar-item">
+              <a href="#">日常杂谈</a>
+            </li>
+            <li class="bar-item">
+              <a href="#">学习笔记</a>
+              <div class="sub-menu">
+                <ul>
+                  <li class="bar-item">
+                    <a href="">Python</a>
+                  </li>
+                  <li class="bar-item">
+                    <a href="">Laravel</a>
+                  </li>
+                  <li class="bar-item">
+                    <a href="">Vue</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="bar-item">
+              <a href="#">最近趣事</a>
+            </li>
+          </ul>
         </div>
       </nav>
     </div>
@@ -58,4 +82,26 @@ export default {
 
 <style lang="scss" scoped>
 @import "assets/scss/header";
+.nav-bar {
+  position: absolute;
+  width: 100%;
+  top: 60px;
+  box-shadow: 1px 2px 10px #bdbdbd;
+  height: 0;
+  transition: .3s;
+  overflow: hidden;
+  z-index: 99;
+  .bar-item {
+    li {
+      list-style-type: none;
+      a {
+        color: #555555;
+        padding: 10px 20px;
+      }
+    }
+  }
+  &.menu-open {
+    height: 165px;
+  }
+}
 </style>

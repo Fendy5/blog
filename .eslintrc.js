@@ -13,14 +13,17 @@ module.exports = {
   // add your custom rules here
   rules: {
     'no-console': 0,
-    'vue/html-self-closing': ['error', {
-      html: {
-        void: 'never',
-        normal: 'any',
-        component: 'any'
-      },
-      svg: 'always',
-      math: 'always'
-    }]
+    'vue/html-self-closing': [
+      'error', {
+        html: {
+          void: 'never',
+          normal: 'any',
+          component: 'any'
+        },
+        svg: 'always',
+        math: 'always'
+      }],
+    'vue/singleline-html-element-content-newline': 'off',
+    'vue/multiline-html-element-content-newline': 'off'
   }
 }

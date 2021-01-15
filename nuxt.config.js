@@ -21,6 +21,20 @@ export default {
   plugins: [
   ],
 
+  server: {
+    port: 6007, // default: 3000
+    host: '0.0.0.0' // default: localhost
+  },
+
+  proxy: {
+    '/dev': {
+      target: 'http://127.0.0.1:6008',
+      pathRewrite: {
+        '^/dev': ''
+      }
+    }
+  },
+
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
 
