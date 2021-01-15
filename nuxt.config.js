@@ -28,7 +28,7 @@ export default {
 
   proxy: {
     '/dev': {
-      target: 'http://127.0.0.1:6008',
+      target: 'http://127.0.0.1:6009',
       pathRewrite: {
         '^/dev': ''
       }
