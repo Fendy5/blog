@@ -40,7 +40,10 @@
               <a href="#">日常杂谈</a>
             </li>
             <li class="bar-item">
-              <a href="#">学习笔记</a>
+              <a href="#">
+                学习笔记
+                <svg-icon icon-class="plus" style="width:15px;height:15px" />
+              </a>
               <div class="sub-menu">
                 <ul>
                   <li class="bar-item">
@@ -87,10 +90,13 @@ export default {
   width: 100%;
   top: 60px;
   box-shadow: 1px 2px 10px #bdbdbd;
-  height: 0;
-  transition: .3s;
+  //height: 0;
+  //transition: .3s;
   overflow: hidden;
   z-index: 99;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform .26s ease;
   .bar-item {
     li {
       list-style-type: none;
@@ -101,7 +107,7 @@ export default {
     }
   }
   &.menu-open {
-    height: 165px;
+    transform: scaleY(1);
   }
 }
 </style>

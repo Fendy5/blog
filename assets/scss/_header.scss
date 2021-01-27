@@ -45,7 +45,7 @@ header {
               content: '';
               height: 2px;
               width: 0;
-              transition: .3s;
+              transition: .26s;
               position: absolute;
               bottom: 20px;
               left: 0;
@@ -85,21 +85,21 @@ header {
           width: $menu_btn-width;
           height: 2px;
           background-color: $white;
-          transition: .5s;
+          transition: .3s;
         }
 
         .line2 {
           width: $menu_btn-width;
           height: 2px;
           background-color: $white;
-          transition: .5s;
+          transition: .3s;
         }
 
         .line3 {
           width: $menu_btn-width;
           height: 2px;
           background-color: $white;
-          transition: .5s;
+          transition: .3s;
         }
 
         &.active {
@@ -133,6 +133,7 @@ header {
             color: $black;
             display: block;
             text-decoration: none;
+            padding: 0;
           }
         }
       }
