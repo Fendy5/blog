@@ -1,0 +1,49 @@
+@import "common";
+
+.app-main {
+  @extend .fd-container;
+  @apply gap-x-8 my-8;
+  .blog-left-sidebar {
+    .blog-item {
+      box-shadow: $blog-box-shadow;
+      //@apply shadow-lg;
+      @apply mb-8;
+      .blog-cover {
+        @apply relative;
+        img{
+          @apply w-full;
+        }
+        .blog-date {
+          @apply text-white inline-block text-center p-4 rounded absolute;
+          left: 1.5rem;
+          bottom: -1.25rem;
+          background: $bg-primary;
+          h3 {
+            @apply text-2xl inline-block font-bold;
+          }
+        }
+      }
+      .blog-detail {
+        @apply px-6 pb-6 pt-10;
+        h2 {
+          @apply text-2xl text-black inline-block font-bold mb-4;
+        }
+        p {
+          @extend .ellipsis-2;
+          @apply text-gray-600 text-sm;
+        }
+        ul {
+          @apply mt-6 flex text-sm;
+        }
+      }
+    }
+  }
+
+  @media #{$laptop}{
+    & {
+      @apply grid;
+      grid-template-columns: 2fr 1fr;
+    }
+  }
+
+}

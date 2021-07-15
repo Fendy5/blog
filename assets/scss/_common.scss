@@ -1,0 +1,44 @@
+@import "variables";
+//@tailwind base;
+//@tailwind components;
+//@tailwind utilities;
+
+.text-primary {
+  color: $bg-primary;
+}
+.fd-container {
+  width: 100%;
+  @media (min-width: 576px) { max-width: 576px; }
+  @media (min-width: 768px) { max-width: 768px; }
+  @media (min-width: 992px) { max-width: 992px; }
+  @media (min-width: 1200px) { max-width: 1200px; }
+  @apply mx-auto px-4
+}
+.flex-justify-between {
+  @apply flex justify-between;
+}
+.wh-3rem {
+  @apply w-12 h-12;
+}
+.flex-items-center {
+  @apply flex items-center;
+}
+.grid-cols-2_1 {
+  @apply grid;
+  grid-template-columns: 2fr 1fr;
+}
+.grid-cols-1_2 {
+  @apply grid;
+  grid-template-columns: 1fr 2fr;
+}
+.ellipsis-2 {
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+}
+.wh-25 {
+  width: 25px;
+  height: 25px;
+}
