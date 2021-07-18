@@ -16,7 +16,7 @@
             <span>2021-02-26 09:27:30</span>
           </li>
         </ul>
-        <div>123</div>
+        <div>{{ $route.params.id }}</div>
       </div>
       <div class="blog-right-sidebar">
         <right-panel />

@@ -6,14 +6,14 @@
         <span class="text-xl">流云辞</span>
       </nuxt-link>
       <ul class="nav">
-        <li v-for="(i,index) in menu" :key="index" :class="{'active': activeIndex===i.id}">
-          <nuxt-link to="/">
-            {{ i.title }}
+        <li v-for="(i,index) in menuList" :key="index">
+          <nuxt-link exact :class="{'nuxt-link-active': `/category/${$route.params.name && $route.params.name.split('-')[0]}`===i.path}" :to="`${i.path}`">
+            {{ i.name }}
           </nuxt-link>
           <ul v-if="i.children" class="sub-menu">
             <li v-for="(x,idx) in i.children" :key="idx">
-              <nuxt-link to="/">
-                {{ x.title }}
+              <nuxt-link :to="`${x.path}`">
+                {{ x.name }}
               </nuxt-link>
             </li>
           </ul>
@@ -29,9 +29,9 @@
     </div>
     <div :class="{'sub-menu-active': mobileActive}" class="menu-content absolute">
       <ul>
-        <li v-for="(i,index) in menu" :key="index" @click="clickMobileMenu(i.id)">
-          <nuxt-link to="/">
-            {{ i.title }}
+        <li v-for="(i,index) in menuList" :key="index" @click="clickMobileMenu(i.id)">
+          <nuxt-link :to="`${i.path}`">
+            {{ i.name }}
             <span v-if="i.children" :class="[mobileSubMenu===i.id?'plus subtract':'plus']">
               <span class="line1" />
               <span class="line2" />
@@ -39,8 +39,8 @@
           </nuxt-link>
           <ul v-if="i.children" :class="[mobileSubMenu===i.id?'sub-menu-open':'sub-menu']">
             <li v-for="(x,idx) in i.children" :key="idx">
-              <nuxt-link to="/">
-                {{ x.title }}
+              <nuxt-link :to="`${x.path}`">
+                {{ x.name }}
               </nuxt-link>
             </li>
           </ul>
@@ -52,6 +52,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { getMenuListApi } from '~/api'
 
 export default Vue.extend({
   name: 'FdHeader',
@@ -60,22 +61,13 @@ export default Vue.extend({
       mobileActive: false,
       activeIndex: 1,
       mobileSubMenu: 0,
-      menu: [
-        { id: 1, title: '首页', url: '', children: null },
-        {
-          id: 2,
-          title: '前端框架',
-          url: '',
-          children: [
-            { title: 'Vue2', url: '', children: null },
-            { title: 'Nuxt', url: '', children: null },
-            { title: 'Vue3', url: '', children: null }
-          ]
-        },
-        { id: 3, title: '后端', url: '', children: null },
-        { id: 4, title: '算法', url: '', children: null }
-      ]
+      menuList: []
     }
+  },
+  created () {
+    getMenuListApi().then((value) => {
+      this.menuList = value.data.menu
+    })
   },
   methods: {
     clickMobileMenu (id:number) {
@@ -265,9 +257,10 @@ header{
           }
         }
         .sub-menu {
-          @apply absolute flex-col w-full py-2;
+          @apply absolute flex-col py-2;
           background: $bg-primary;
-          transform: scale(0);
+          transform: scale(0) translateX(-50%);
+          left: 50%;
           transform-origin: top center;
           li {
             @apply px-2 text-center;
@@ -275,7 +268,7 @@ header{
         }
         &:hover {
           .sub-menu {
-            transform: scale(1);
+            transform: scale(1) translateX(-50%);
             transition: .5s;
             @apply visible;
           }
@@ -315,6 +308,11 @@ header{
       position: absolute;
       width: 2px;
       height: 0;
+    }
+  }
+  .nuxt-link-active {
+    &:before {
+      width: $animate-width;
     }
   }
 }
