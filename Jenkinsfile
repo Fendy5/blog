@@ -16,12 +16,12 @@ pipeline {
       }
     }
 
-//     stage('Deploy') {
-//       steps {
-//         sh "rm -rf /www/wwwroot/${ItemName}.fendy5.cn/dist"
-//         sh "mv ./dist /www/wwwroot/${ItemName}.fendy5.cn"
-//       }
-//     }
+    stage('Deploy') {
+      steps {
+        sh "rm -rf /www/wwwroot/${ItemName}.fendy5.cn/dist"
+        sh "mv ./dist /www/wwwroot/${ItemName}.fendy5.cn"
+      }
+    }
 
   }
   environment {
