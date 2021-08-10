@@ -11,17 +11,18 @@ pipeline {
       steps {
         nodejs(nodeJSInstallationName: 'NodeJS 14.4.0', configId: '813e0106-1f9e-4e72-a283-4bb717eec4d2') {
           sh 'yarn install'
-          sh 'yarn generate'
+          sh 'yarn build'
+          sh 'yarn start'
         }
       }
     }
 
-    stage('Deploy') {
-      steps {
-        sh "rm -rf /www/wwwroot/${ItemName}.fendy5.cn/dist"
-        sh "mv ./dist /www/wwwroot/${ItemName}.fendy5.cn"
-      }
-    }
+//     stage('Deploy') {
+//       steps {
+//         sh "rm -rf /www/wwwroot/${ItemName}.fendy5.cn/dist"
+//         sh "mv ./dist /www/wwwroot/${ItemName}.fendy5.cn"
+//       }
+//     }
 
   }
   environment {

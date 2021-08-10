@@ -105,6 +105,6 @@ export default {
   },
   generate: {
     fallback: 'index.html',
-    subFolders: false
+    subFolders: true
   }
 }
