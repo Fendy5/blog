@@ -10,9 +10,13 @@ pipeline {
     stage('Build') {
       steps {
         nodejs(nodeJSInstallationName: 'NodeJS 14.4.0', configId: '813e0106-1f9e-4e72-a283-4bb717eec4d2') {
-          sh 'yarn install'
-          sh 'yarn generate'
+          sh '''yarn install
+'''
+          sh '''yarn remove sass-loader postcss dart-sass
+yarn add dart-sass -D
+yarn generate'''
         }
+
       }
     }
 
