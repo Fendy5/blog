@@ -12,8 +12,7 @@ pipeline {
         nodejs(nodeJSInstallationName: 'NodeJS 14.4.0', configId: '813e0106-1f9e-4e72-a283-4bb717eec4d2') {
           sh '''yarn install
 '''
-          sh '''yarn remove sass-loader postcss dart-sass
-yarn add dart-sass -D
+          sh '''yarn add sass-loader postcss node-sass -D
 yarn generate'''
         }
 
