@@ -54,6 +54,8 @@ export default {
     credentials: true
   },
 
+  static: 'static',
+
   proxy: {
     '/dev-api': {
       target: 'http://127.0.0.1:7036',
