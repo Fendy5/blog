@@ -54,7 +54,7 @@ export default {
     credentials: true
   },
 
-  static: 'static',
+  target: 'static',
 
   proxy: {
     '/dev-api': {
