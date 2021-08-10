@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "cross-env BASE_URL=/dev-api nuxt",
-    "build": "nuxt build --analyze",
+    "build": "nuxt build",
     "start": "nuxt start",
     "generate": "cross-env BASE_URL=/ nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
