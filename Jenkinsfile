@@ -25,7 +25,7 @@ pipeline {
 
   }
   environment {
-    ItemName = 'www'
+    ItemName = 'blog'
   }
   options {
     skipDefaultCheckout(true)
