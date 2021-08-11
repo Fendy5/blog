@@ -10,11 +10,7 @@
       <div class="pc-title">分类</div>
       <div class="pc-content">
         <ul class="divide-y divide-gray-300">
-          <li><NuxtLink to="/vue">Vue(23)</NuxtLink></li>
-          <li><NuxtLink to="/vue">PHP(2)</NuxtLink></li>
-          <li><NuxtLink to="/vue">Nuxt(5)</NuxtLink></li>
-          <li><NuxtLink to="/vue">JavaScript(9)</NuxtLink></li>
-          <li><NuxtLink to="/vue">CSS(0)</NuxtLink></li>
+          <li v-for="i in categoryList" :key="i.id"><NuxtLink to="/vue">{{ i.name }}({{ i.articles_count }})</NuxtLink></li>
         </ul>
       </div>
     </div>
@@ -49,8 +45,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
+import { getTagListApi } from '~/api/tag'
+import { getCategoryListApi } from '~/api/category'
+
 export default Vue.extend({
   name: 'RightPanel',
   data () {
@@ -62,14 +61,23 @@ export default Vue.extend({
         { id: 4, cover: 'https://image.fendy5.cn/s/pOQRrO72iftvEYI9_0.25.gif', title: '乘积最大子数组乘积最大子数组乘积最大子数组乘积最大', createTime: '2021-02-26 09:27:30' },
         { id: 5, cover: 'https://image.fendy5.cn/s/pOQRrO72iftvEYI9_0.25.gif', title: '乘积最大子数组乘积最大子数组乘积最大子数组乘积最大', createTime: '2021-02-26 09:27:30' }
       ],
+      categoryList: [],
       tagList: [
-        { id: 1, name: 'CSS' },
+        { id: 1, name: 'CSS4' },
         { id: 2, name: 'CSS' },
         { id: 3, name: 'CSS' },
         { id: 4, name: 'CSS' },
         { id: 5, name: 'CSS' }
       ]
     }
+  },
+  created () {
+    getTagListApi({ isQueue: true }).then((value) => {
+      this.tagList = value.data
+    })
+    getCategoryListApi({ isCategory: true }).then((value) => {
+      this.categoryList = value.data
+    })
   }
 })
 </script>
@@ -98,7 +106,13 @@ export default Vue.extend({
         }
       }
       .tag {
-        @apply grid grid-cols-3;
+        //@apply grid grid-cols-3;
+        li {
+          @apply mr-2;
+          a {
+            @apply rounded;
+          }
+        }
         .tag-item {
           @apply px-2 py-1 border-purple-300 border;
         }

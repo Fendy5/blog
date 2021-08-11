@@ -2,21 +2,21 @@
   <div>
     <main class="app-main">
       <div class="blog-left-sidebar p-8">
-        <div class="text-center">
-          <img src="https://www.fendy5.cn/public/images/cover/20705011.jpg" alt="图片暂无法显示">
+        <div class="text-center ">
+          <img class="cover" :src="article.cover" alt="图片暂无法显示">
         </div>
-        <h2 class="title">乘积最大子数组</h2>
+        <h2 class="title">{{ article.title }}</h2>
         <ul class="flex text-gray-600 text-sm divide-x">
           <li class="flex-items-center pr-4">
             <svg-icon class="wh-25 mr-1" icon-class="sort" />
-            <NuxtLink to="/">算法</NuxtLink>
+            <NuxtLink to="/">{{ article.category_id.name }}</NuxtLink>
           </li>
           <li class="flex-items-center pl-4">
             <svg-icon class="wh-25 mr-1" icon-class="time" />
-            <span>2021-02-26 09:27:30</span>
+            <span>{{ article.created_at }}</span>
           </li>
         </ul>
-        <div>{{ $route.params.id }}</div>
+        <div class="overflow-x-scroll" v-html="article.content" />
       </div>
       <div class="blog-right-sidebar">
         <right-panel />
@@ -25,14 +25,33 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
-import RightPanel from '@/components/RightPanel'
+import { Context } from '@nuxt/types'
+import RightPanel from '~/components/RightPanel.vue'
+import { getArticleApi } from '~/api/article'
 
 export default Vue.extend({
   name: 'Article',
   components: {
     RightPanel
+  },
+  asyncData (ctx: Context): Promise<object | void> | object | void {
+    return getArticleApi(ctx.from.params.id).then((value) => {
+      return { article: value.data }
+    })
+  },
+  data () {
+    return {
+      article: {
+        title: '',
+        category_id: {},
+        cover: '',
+        content: '',
+        summary: '',
+        created_at: ''
+      }
+    }
   }
 })
 

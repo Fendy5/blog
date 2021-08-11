@@ -1,7 +1,7 @@
 @import "variables";
-//@tailwind base;
-//@tailwind components;
-//@tailwind utilities;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .text-primary {
   color: $bg-primary;
@@ -41,4 +41,9 @@
 .wh-25 {
   width: 25px;
   height: 25px;
+}
+.cover {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
 }

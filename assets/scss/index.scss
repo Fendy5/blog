@@ -10,8 +10,9 @@
       @apply mb-8;
       .blog-cover {
         @apply relative;
-        img{
-          @apply w-full;
+        img {
+          height: 320px;
+          @apply w-full object-cover;
         }
         .blog-date {
           @apply text-white inline-block text-center p-4 rounded absolute;

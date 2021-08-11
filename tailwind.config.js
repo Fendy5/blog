@@ -1,7 +1,4 @@
 module.exports = {
-  future: {
-    purgeLayersByDefault: true
-  },
   theme: {
     screens: {
       desktop: { min: '1280px' },
