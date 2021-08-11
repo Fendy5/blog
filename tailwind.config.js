@@ -1,4 +1,7 @@
 module.exports = {
+  future: {
+    purgeLayersByDefault: true
+  },
   theme: {
     screens: {
       desktop: { min: '1280px' },
@@ -9,6 +12,7 @@ module.exports = {
   variants: {},
   plugins: [],
   purge: {
+    enabled: true,
     content: [
       'components/**/*.{vue,js}',
       'layouts/**/*.vue',

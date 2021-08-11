@@ -56,6 +56,8 @@ export default {
 
   target: 'static',
 
+  ssr: process.env.NODE_ENV === 'production',
+
   proxy: {
     '/dev-api': {
       target: 'http://127.0.0.1:7036',
@@ -87,16 +89,28 @@ export default {
           options: { symbolId: 'icon-[name]' }
         }]
       })
+    },
+    babel: {
+      plugins: [
+        ['component',
+          {
+            libraryName: 'element-ui',
+            styleLibraryName: 'theme-chalk'
+          }
+        ]
+      ]
+    },
+    postcss: {
+      plugins: {
+        tailwindcss: {},
+        autoprefixer: {}
+      }
     }
   },
-  babel: {
-    plugins: [
-      ['component',
-        {
-          libraryName: 'element-ui',
-          styleLibraryName: 'theme-chalk'
-        }
-      ]
-    ]
+  generate: {
+    fallback: 'index.html'
   }
+  // router: {
+  //   base: process.env.NODE_ENV === 'production' ? './' : '/' // 使用 './' 主要是为了适配以相对路径打开的静态站点
+  // }
 }
