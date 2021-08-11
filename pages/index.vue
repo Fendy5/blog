@@ -52,7 +52,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import RightPanel from '@/components/RightPanel.vue'
-import { getArticleListApi } from '~/api/article'
+// import { getArticleListApi } from '~/api/article'
 // import { Context } from '@nuxt/types'
 
 export default Vue.extend({
@@ -60,11 +60,11 @@ export default Vue.extend({
   components: {
     RightPanel
   },
-  asyncData (): Promise<object | void> | object | void {
-    return getArticleListApi().then((value) => {
-      return { articleList: value.data.data }
-    })
-  },
+  // asyncData (): Promise<object | void> | object | void {
+  //   return getArticleListApi().then((value) => {
+  //     return { articleList: value.data.data }
+  //   })
+  // },
   data () {
     return {
       articleList: [],
