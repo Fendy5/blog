@@ -1,7 +1,7 @@
 <template>
   <div>
     <main class="app-main">
-      <div class="blog-left-sidebar p-8">
+      <div class="blog-left-sidebar tablet:p-4 p-8">
         <div class="text-center ">
           <img class="cover" :src="article.cover" alt="图片暂无法显示">
         </div>
@@ -37,7 +37,7 @@ export default Vue.extend({
     RightPanel
   },
   asyncData (ctx: Context): Promise<object | void> | object | void {
-    return getArticleApi(ctx.from.params.id).then((value) => {
+    return getArticleApi(ctx.params.id).then((value) => {
       return { article: value.data }
     })
   },
