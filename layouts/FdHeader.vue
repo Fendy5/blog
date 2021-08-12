@@ -7,12 +7,13 @@
       </nuxt-link>
       <ul class="nav">
         <li v-for="(i,index) in menuList" :key="index">
-          <nuxt-link exact :class="{'nuxt-link-active': `/category/${$route.params.name && $route.params.name.split('-')[0]}`===i.path}" :to="`${i.path}`">
+          <nuxt-link exact :class="{'nuxt-link-active': `/category/${$route.params.name && $route.params.name.split('-')[0]}`===i.path}" :to="i.path">
+            <!--          <nuxt-link exact :class="{'nuxt-link-active': `/category/${$route.params.name && $route.params.name.split('-')[0]}`===i.path}" :to="i.children.length>0?'#':i.path">-->
             {{ i.name }}
           </nuxt-link>
           <ul v-if="i.children" class="sub-menu">
             <li v-for="(x,idx) in i.children" :key="idx">
-              <nuxt-link :to="`${x.path}`">
+              <nuxt-link :to="`/category/${x.path}`">
                 {{ x.name }}
               </nuxt-link>
             </li>
