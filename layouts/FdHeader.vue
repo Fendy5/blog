@@ -1,19 +1,18 @@
 <template>
   <header class="flex font-bold">
-    <div class="fd-container flex-justify-between items-center flex">
+    <div class="fd-container z-10 flex-justify-between items-center flex">
       <nuxt-link class="flex-items-center" to="/">
         <svg-icon class="wh-3rem" icon-class="logo" />
         <span class="text-xl">流云辞</span>
       </nuxt-link>
       <ul class="nav">
         <li v-for="(i,index) in menuList" :key="index">
-          <nuxt-link exact :class="{'nuxt-link-active': `/category/${$route.params.name && $route.params.name.split('-')[0]}`===i.path}" :to="i.path">
-            <!--          <nuxt-link exact :class="{'nuxt-link-active': `/category/${$route.params.name && $route.params.name.split('-')[0]}`===i.path}" :to="i.children.length>0?'#':i.path">-->
-            {{ i.name }}
+          <nuxt-link exact :class="{'nuxt-link-active': `/category/${$route.params.name && $route.params.name.split('-')[0]}`===i.path}" :to="i.children.length>0?'#':i.path">
+            <span :class="{'arrow': i.children.length>0}"> {{ i.name }} </span>
           </nuxt-link>
           <ul v-if="i.children" class="sub-menu">
             <li v-for="(x,idx) in i.children" :key="idx">
-              <nuxt-link :to="`/category/${x.path}`">
+              <nuxt-link :to="`/category${x.path}`">
                 {{ x.name }}
               </nuxt-link>
             </li>
@@ -30,17 +29,17 @@
     </div>
     <div :class="{'sub-menu-active': mobileActive}" class="menu-content absolute">
       <ul>
-        <li v-for="(i,index) in menuList" :key="index" @click="clickMobileMenu(i.id)">
-          <nuxt-link :to="`${i.path}`">
+        <li v-for="(i,index) in menuList" :key="index" @click="clickMobileMenu(i.id, i.children.length>0)">
+          <nuxt-link :to="i.children.length>0?'#':i.path">
             {{ i.name }}
-            <span v-if="i.children" :class="[mobileSubMenu===i.id?'plus subtract':'plus']">
+            <span v-if="i.children.length>0" :class="[mobileSubMenu===i.id?'plus subtract':'plus']">
               <span class="line1" />
               <span class="line2" />
             </span>
           </nuxt-link>
           <ul v-if="i.children" :class="[mobileSubMenu===i.id?'sub-menu-open':'sub-menu']">
-            <li v-for="(x,idx) in i.children" :key="idx">
-              <nuxt-link :to="`${x.path}`">
+            <li v-for="(x,idx) in i.children" :key="idx" @click="clickMobileMenu(i.id, false)">
+              <nuxt-link :to="`/category${x.path}`">
                 {{ x.name }}
               </nuxt-link>
             </li>
@@ -48,6 +47,7 @@
         </li>
       </ul>
     </div>
+    <div v-show="mobileActive" class="dialog" @click="mobileActive=false" />
   </header>
 </template>
 
@@ -71,8 +71,9 @@ export default Vue.extend({
     })
   },
   methods: {
-    clickMobileMenu (id:number) {
+    clickMobileMenu (id: number, hasSubMenu: boolean) {
       this.mobileSubMenu = id === this.mobileSubMenu ? 99 : id
+      !hasSubMenu && (this.mobileActive = false)
     }
   }
 })
@@ -181,6 +182,7 @@ header{
       }
     }
     .menu-content {
+      z-index: 999;
       color: $bg-primary;
       background: #ffffff;
       width: calc(100% - 2rem);
@@ -200,6 +202,7 @@ header{
             @apply flex justify-between;
           }
           .sub-menu {
+            @apply font-medium;
             max-height: 0;
             transition: .5s;
             overflow: hidden;
@@ -255,6 +258,11 @@ header{
             &:before {
               width: $animate-width;
             }
+            .arrow {
+              &:after {
+                transform: rotate(45deg);
+              }
+            }
           }
         }
         .sub-menu {
@@ -272,6 +280,11 @@ header{
             transform: scale(1) translateX(-50%);
             transition: .5s;
             @apply visible;
+          }
+          .arrow {
+            &:after {
+              transform: rotate(45deg);
+            }
           }
         }
       }
@@ -315,6 +328,16 @@ header{
     &:before {
       width: $animate-width;
     }
+  }
+  .dialog {
+    z-index: 9;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    opacity: .5;
+    left: 0;
+    top: 0;
+    background: #000000;
   }
 }
 </style>

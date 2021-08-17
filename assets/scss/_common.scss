@@ -1,6 +1,6 @@
 @import "variables";
-@tailwind base;
-@tailwind components;
+//@tailwind base;
+//@tailwind components;
 @tailwind utilities;
 
 .text-primary {
@@ -46,4 +46,18 @@
   width: 100%;
   max-height: 320px;
   object-fit: cover;
+}
+.arrow {
+  &:after {
+    transition: .3s;
+    content: '';
+    width: 15px;
+    height: 15px;
+    position: relative;
+    left: 5px;
+    display: inline-block;
+    border-top: 3px solid white;
+    border-left: 3px solid white;
+    transform: rotate(225deg);
+  }
 }
