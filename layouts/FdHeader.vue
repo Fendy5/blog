@@ -268,8 +268,8 @@ header{
         .sub-menu {
           @apply absolute flex-col py-2;
           background: $bg-primary;
-          transform: scale(0) translateX(-50%);
-          left: 50%;
+          transform: scale(0);
+          left: 0;
           transform-origin: top center;
           li {
             @apply px-2 text-center;
@@ -277,7 +277,7 @@ header{
         }
         &:hover {
           .sub-menu {
-            transform: scale(1) translateX(-50%);
+            transform: scale(1);
             transition: .5s;
             @apply visible;
           }
