@@ -20,6 +20,10 @@ pipeline {
     stage('Deploy') {
       steps {
         sh "rm -rf /www/wwwroot/${ItemName}.fendy5.cn/dist"
+        sh '''pwd
+ls
+echo \'----------------\'
+ls /www/wwwroot/blog.fendy5.cn'''
         sh 'mv dist /www/wwwroot/blog.fendy5.cn'
       }
     }
