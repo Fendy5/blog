@@ -1,9 +1,10 @@
 import request from '~/utils/request'
 
-export const getArticleListApi = () =>
+export const getArticleListApi = (data: any) =>
   request({
     url: '/api/v1/articles',
-    method: 'get'
+    method: 'get',
+    data
   })
 
 export const getArticleApi = (id: string) =>

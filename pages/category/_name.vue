@@ -3,7 +3,7 @@
     <main class="app-main">
       <div class="blog-left-sidebar">
         <div class="blog-list">
-          <div v-for="i in 8" :key="i" class="blog-item">
+          <div v-for="i in 2" :key="i" class="blog-item">
             <div class="blog-cover">
               <img src="https://www.fendy5.cn/public/images/cover/20705011.jpg" alt="图片暂无法显示">
               <div class="blog-date">
@@ -51,12 +51,17 @@
 <script lang="ts">
 import Vue from 'vue'
 import RightPanel from '@/components/RightPanel.vue'
+import { Context } from '@nuxt/types'
 
 export default Vue.extend({
   name: 'Category',
   components: { RightPanel },
+  asyncData (ctx: Context): Promise<object | void> | object | void {
+    console.log(ctx)
+  },
   data () {
     return {
+      blogList: [],
       currentPage4: 4
     }
   },
