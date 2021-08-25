@@ -23,7 +23,7 @@ pipeline {
         sh '''pwd
 ls
 echo \'----------------\'
-ls /www/wwwroot/blog.fendy5.cn'''
+ls /'''
         sh 'mv dist /www/wwwroot/blog.fendy5.cn'
       }
     }
