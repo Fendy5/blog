@@ -13,12 +13,18 @@ pipeline {
           sh 'yarn install'
           sh 'yarn generate'
         }
+
       }
     }
 
     stage('Deploy') {
       steps {
         sh "rm -rf /www/wwwroot/${ItemName}.fendy5.cn/dist"
+        echo 'pwd'
+        sh '''"echo pwd"
+"pwd"
+"ls"
+"mv ./dist /www/wwwroot/${ItemName}.fendy5.cn"'''
         sh "mv ./dist /www/wwwroot/${ItemName}.fendy5.cn"
       }
     }
