@@ -23,8 +23,7 @@ pipeline {
         echo 'pwd'
         sh '''"pwd"
 "ls"
-"mv dist /www/wwwroot/${ItemName}.fendy5.cn"'''
-        sh "mv ./dist /www/wwwroot/${ItemName}.fendy5.cn"
+"mv ./dist /www/wwwroot/${ItemName}.fendy5.cn"'''
       }
     }
 
