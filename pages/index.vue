@@ -9,7 +9,7 @@
               <img :src="i.cover" alt="图片暂无法显示">
               <div class="blog-date">
                 <h3>10日</h3>
-                <p>07月</p>
+                <p>08月</p>
               </div>
             </div>
             <div class="blog-detail">
