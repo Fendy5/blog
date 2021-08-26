@@ -32,11 +32,12 @@
         </div>
         <div class="text-right mt-12 mb-16">
           <el-pagination
-            :current-page="currentPage4"
-            :page-sizes="[100, 200, 300, 400]"
-            :page-size="100"
+            :hide-on-single-page="true"
+            :current-page="page.current_page"
+            :page-sizes="[6,12,30,50]"
+            :page-size="page.per_page"
             layout="total, prev, pager, next"
-            :total="400"
+            :total="page.total"
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
           />
@@ -53,32 +54,24 @@
 import Vue from 'vue'
 import RightPanel from '@/components/RightPanel.vue'
 import { getArticleListApi } from '~/api/article'
-// import { Context } from '@nuxt/types'
+import { articleMixin } from '~/mixins/article'
+import { processArticleList } from '~/pages/article/common'
 
 export default Vue.extend({
   name: 'Home',
   components: {
     RightPanel
   },
+  mixins: [articleMixin],
   asyncData (): Promise<object | void> | object | void {
     return getArticleListApi().then((value) => {
-      return { articleList: value.data.data }
+      return processArticleList(value)
     })
   },
   data () {
-    return {
-      articleList: [],
-      currentPage4: 4
-    }
+    return {}
   },
-  methods: {
-    handleSizeChange (val: number) {
-      console.log(`每页 ${val} 条`)
-    },
-    handleCurrentChange (val: number) {
-      console.log(`当前页: ${val}`)
-    }
-  }
+  methods: {}
 })
 </script>
 

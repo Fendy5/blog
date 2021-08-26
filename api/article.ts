@@ -1,10 +1,10 @@
 import request from '~/utils/request'
 
-export const getArticleListApi = (data?: any) =>
+export const getArticleListApi = (params?: any) =>
   request({
     url: '/api/v1/articles',
     method: 'get',
-    data
+    params
   })
 
 export const getArticleApi = (id: string) =>

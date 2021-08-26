@@ -12,6 +12,7 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
+    camelcase: 'off',
     'no-debugger': 'off',
     'vue/singleline-html-element-content-newline': 'off',
     'no-console': 'off'
