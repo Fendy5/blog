@@ -83,7 +83,7 @@ export default Vue.extend({
 @import "assets/scss/common";
 $animate-width: 25px;
 // 菜单按钮的样式
-$menu_btn-width: 35px;
+$menu_btn-width: 25px;
 // 菜单按钮的颜色
 $menu_btn-color: $bg-primary;
 // 移动端菜单的阴影
@@ -118,7 +118,7 @@ header{
 
         .line1 {
           position: relative;
-          top: -10px;
+          top: -7px;
           width: $menu_btn-width;
           height: 2px;
           background-color: $white;
@@ -134,7 +134,7 @@ header{
 
         .line3 {
           position: relative;
-          bottom: -10px;
+          bottom: -7px;
           width: $menu_btn-width;
           height: 2px;
           background-color: $white;
@@ -143,8 +143,8 @@ header{
 
         &.active {
           .line1 {
-            transform: rotate(135deg);
-            top: 10px;
+            transform: rotate(125deg);
+            top: 3px;
             position: relative;
           }
 
@@ -153,8 +153,8 @@ header{
           }
 
           .line3 {
-            transform: rotate(-135deg);
-            bottom: 10px;
+            transform: rotate(-145deg);
+            bottom: 0;
             position: relative;
           }
         }
@@ -242,7 +242,7 @@ header{
         position: relative;
         @apply mx-2;
         a {
-          @apply text-base px-4 py-2 block;
+          @apply text-sm px-4 py-2 block;
           &:before {
             background-color: white;
             content: '';
