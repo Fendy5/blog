@@ -3,6 +3,10 @@
 //@tailwind components;
 @tailwind utilities;
 
+html {
+  font-size: 14px;
+}
+
 .text-primary {
   color: $bg-primary;
 }
@@ -58,13 +62,13 @@
   &:after {
     transition: .3s;
     content: '';
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
     position: relative;
     left: 5px;
     display: inline-block;
-    border-top: 3px solid white;
-    border-left: 3px solid white;
+    border-top: 2px solid white;
+    border-left: 2px solid white;
     transform: rotate(225deg);
   }
 }
