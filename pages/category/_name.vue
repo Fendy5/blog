@@ -3,7 +3,7 @@
     <main class="app-main">
       <div class="blog-left-sidebar">
         <div v-if="articleList.length" class="blog-list">
-          <div v-for="i in articleList" :key="i.id" class="blog-item">
+          <div v-for="i in articles" :key="i.id" class="blog-item">
             <div class="blog-cover">
               <img :src="i.cover" alt="图片暂无法显示">
               <div class="blog-date">
@@ -23,7 +23,7 @@
                 </li>
                 <li class="flex-items-center pl-4">
                   <svg-icon class="wh-25 mr-1" icon-class="comment" />
-                  <NuxtLink to="/">评论({{ i.id }})</NuxtLink>
+                  <NuxtLink to="/">评论(0)</NuxtLink>
                 </li>
               </ul>
             </div>
@@ -60,6 +60,7 @@ import { Context } from '@nuxt/types'
 import { getArticleListApi } from '~/api/article'
 import { articleMixin } from '~/mixins/article'
 import { processArticleList } from '~/pages/article/common'
+import { Article } from '~/types'
 
 export default Vue.extend({
   name: 'Category',
@@ -72,6 +73,16 @@ export default Vue.extend({
   },
   data () {
     return {}
+  },
+  computed: {
+    articles (): Article[] {
+      return this.articleList.map((value: { month: any; split: (arg0: string) => string[]; day: any }) => {
+        const time = value.updated_at.split(' ')[0].split('-')
+        value.month = time[1]
+        value.day = time[2]
+        return value
+      })
+    }
   },
   methods: {}
 })

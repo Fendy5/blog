@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pt-6">
     <main class="app-main">
       <div class="blog-left-sidebar tablet:p-4 p-8">
         <div class="text-center ">
@@ -60,7 +60,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 @import "assets/scss/index";
 .app-main {
-  @apply mt-12;
+  @apply mt-12 px-0;
   .blog-left-sidebar {
     box-shadow: $blog-box-shadow;
     & > * {

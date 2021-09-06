@@ -4,12 +4,12 @@
     <main class="app-main">
       <div class="blog-left-sidebar">
         <div class="blog-list">
-          <div v-for="i in articleList" :key="i.article_id" class="blog-item">
+          <div v-for="i in articles" :key="i.article_id" class="blog-item">
             <div class="blog-cover">
               <img :src="i.cover" alt="图片暂无法显示">
               <div class="blog-date">
-                <h3>10日</h3>
-                <p>08月</p>
+                <h3>{{ i.day }}日</h3>
+                <p>{{ i.month }}月</p>
               </div>
             </div>
             <div class="blog-detail">
@@ -56,6 +56,7 @@ import RightPanel from '@/components/RightPanel.vue'
 import { getArticleListApi } from '~/api/article'
 import { articleMixin } from '~/mixins/article'
 import { processArticleList } from '~/pages/article/common'
+import { Article } from '~/types'
 
 export default Vue.extend({
   name: 'Home',
@@ -70,6 +71,16 @@ export default Vue.extend({
   },
   data () {
     return {}
+  },
+  computed: {
+    articles (): Article[] {
+      return this.articleList.map((value: { month: any; split: (arg0: string) => string[]; day: any }) => {
+        const time = value.updated_at.split(' ')[0].split('-')
+        value.month = time[1]
+        value.day = time[2]
+        return value
+      })
+    }
   },
   methods: {}
 })

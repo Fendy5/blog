@@ -28,7 +28,7 @@
       <div class="pc-title">最近更新</div>
       <div class="pc-content">
         <ul>
-          <li v-for="i in recentList" :key="i.id" class="grid-cols-1_2 gap-x-4">
+          <li v-for="i in recentList" :key="i.article_id" class="grid-cols-1_2 gap-x-4">
             <div class="cover-thumbnail">
               <img :src="i.cover" alt="">
             </div>
@@ -36,7 +36,7 @@
               <RouterLink to="/">
                 <p class="truncate w-40">{{ i.title }}</p>
               </RouterLink>
-              <p>{{ i.createTime }}</p>
+              <p>{{ i.updated_at }}</p>
             </div>
           </li>
         </ul>
@@ -49,6 +49,7 @@
 import Vue from 'vue'
 import { getTagListApi } from '~/api/tag'
 import { getCategoryListApi } from '~/api/category'
+import { getArticleListApi } from '~/api/article'
 
 export default Vue.extend({
   name: 'RightPanel',
@@ -72,6 +73,7 @@ export default Vue.extend({
     }
   },
   created () {
+    getArticleListApi({ rowsPerPage: 5, page: 1 }).then((value) => { this.recentList = value.data.data })
     getTagListApi({ isQueue: true }).then((value) => {
       this.tagList = value.data
     })
@@ -87,7 +89,7 @@ export default Vue.extend({
 
 .right-panel {
   .panel-card {
-    @apply py-8 mb-8;
+    @apply py-8;
     box-shadow: $blog-box-shadow;
     .pc-title {
       @apply text-xl px-6 pb-4;
