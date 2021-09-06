@@ -70,11 +70,13 @@ export default Vue.extend({
     })
   },
   data () {
-    return {}
+    return {
+      articleList: []
+    }
   },
   computed: {
     articles (): Article[] {
-      return this.articleList.map((value: { month: any; split: (arg0: string) => string[]; day: any }) => {
+      return this.articleList.map((value: any) => {
         const time = value.updated_at.split(' ')[0].split('-')
         value.month = time[1]
         value.day = time[2]
