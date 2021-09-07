@@ -9,9 +9,8 @@
       //@apply shadow-lg;
       @apply mb-8;
       .blog-cover {
-        @apply relative;
+        @apply relative w-full;
         img {
-          height: 320px;
           @apply w-full object-cover;
         }
         .blog-date {
