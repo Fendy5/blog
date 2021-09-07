@@ -67,7 +67,7 @@ export default Vue.extend({
   components: { RightPanel },
   mixins: [articleMixin],
   asyncData (ctx: Context): Promise<object | void> | object | void {
-    return getArticleListApi({ path: ctx.params.name }).then((value) => {
+    return getArticleListApi({ path: ctx.params.name, page: 1, rowsPerPage: 6 }).then((value) => {
       return processArticleList(value)
     })
   },

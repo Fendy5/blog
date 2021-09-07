@@ -65,7 +65,7 @@ export default Vue.extend({
   },
   mixins: [articleMixin],
   asyncData (): Promise<object | void> | object | void {
-    return getArticleListApi().then((value) => {
+    return getArticleListApi({ page: 1, rowsPerPage: 6 }).then((value) => {
       return processArticleList(value)
     })
   },
