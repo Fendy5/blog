@@ -71,3 +71,7 @@ html {
     transform: rotate(225deg);
   }
 }
+pre {
+  overflow: auto !important;
+  padding: 20px !important;
+}
