@@ -53,6 +53,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import RightPanel from '@/components/RightPanel.vue'
+import { Context } from '@nuxt/types'
 import { getArticleListApi } from '~/api/article'
 import { articleMixin } from '~/mixins/article'
 import { processArticleList } from '~/pages/article/common'
@@ -64,8 +65,8 @@ export default Vue.extend({
     RightPanel
   },
   mixins: [articleMixin],
-  asyncData (): Promise<object | void> | object | void {
-    return getArticleListApi({ page: 1, rowsPerPage: 6 }).then((value) => {
+  asyncData (ctx: Context): Promise<object | void> | object | void {
+    return getArticleListApi({ page: ctx.query.current_page || 1, rowsPerPage: ctx.query.per_page || 6 }).then((value) => {
       return processArticleList(value)
     })
   },
@@ -82,6 +83,15 @@ export default Vue.extend({
         value.day = time[2]
         return value
       })
+    }
+  },
+  watch: {
+    $route: {
+      handler (val) {
+        if (!val.query.current_page || val.query.current_page === 1) {
+          this.getList(1, 6)
+        }
+      }
     }
   },
   methods: {}

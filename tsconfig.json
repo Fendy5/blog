@@ -8,6 +8,8 @@
       "ESNext.AsyncIterable",
       "DOM"
     ],
+    "noImplicitThis": false,
+    "suppressImplicitAnyIndexErrors": true,
     "esModuleInterop": true,
     "allowJs": true,
     "sourceMap": true,

@@ -6,3 +6,9 @@ export interface Article {
   day: string
   summary: string
 }
+
+export interface Page {
+  total: number
+  per_page: number
+  current_page: number
+}
