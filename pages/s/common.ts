@@ -7,5 +7,5 @@ export const processArticleList = (value: any) => {
     per_page: parseInt(data.per_page),
     current_page: data.current_page
   }
-  return { articleList: data.data, page }
+  return { articleList: data.data, page, loading: false }
 }

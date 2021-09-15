@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="panel-card divide-y divide-gray-300">
-      <div class="pc-title">分类</div>
+      <div class="pc-title">笔记分类</div>
       <div class="pc-content">
         <ul class="divide-y divide-gray-300">
           <li v-for="i in categoryList" :key="i.id"><NuxtLink to="/vue">{{ i.name }}({{ i.articles_count }})</NuxtLink></li>
@@ -33,7 +33,7 @@
               <img :src="i.cover" alt="">
             </div>
             <div class="summary">
-              <RouterLink to="/">
+              <RouterLink :to="`/s/${i.article_id}`">
                 <p class="truncate w-40">{{ i.title }}</p>
               </RouterLink>
               <p>{{ i.updated_at }}</p>
