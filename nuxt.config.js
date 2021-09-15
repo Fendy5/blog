@@ -68,6 +68,12 @@ export default {
     }
   },
 
+  router: {
+    scrollBehavior () {
+      return { x: 0, y: 0 }
+    }
+  },
+
   env: {
     BASE_URL: process.env.BASE_URL
   },
