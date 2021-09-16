@@ -27,6 +27,7 @@ export default Vue.extend({
   name: 'Article',
   asyncData (ctx: Context): Promise<object | void> | object | void {
     return getArticleApi(ctx.params.id).then((value) => {
+      ctx.app.head.title = value.data.title
       return { article: value.data }
     })
   },
@@ -40,6 +41,11 @@ export default Vue.extend({
         summary: '',
         created_at: ''
       }
+    }
+  },
+  head () {
+    return {
+      title: this.title
     }
   }
 })

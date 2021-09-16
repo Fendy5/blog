@@ -10,7 +10,7 @@
       <div class="pc-title">笔记分类</div>
       <div class="pc-content">
         <ul class="divide-y divide-gray-300">
-          <li v-for="i in categoryList" :key="i.id"><NuxtLink to="/vue">{{ i.name }}({{ i.articles_count }})</NuxtLink></li>
+          <li v-for="i in categoryList" :key="i.id"><NuxtLink :title="i.title" :to="`/category${i.path}`">{{ i.name }}({{ i.articles_count }})</NuxtLink></li>
         </ul>
       </div>
     </div>

@@ -10,7 +10,7 @@
           </div>
         </div>
         <div class="blog-detail">
-          <nuxt-link :to="`/s/${i.article_id}`">
+          <nuxt-link :title="i.title" :to="`/s/${i.article_id}`">
             <h2>{{ i.title }}</h2>
           </nuxt-link>
           <p>{{ i.summary }}</p>
@@ -58,6 +58,7 @@ export default Vue.extend({
   },
   mixins: [articleMixin],
   asyncData (ctx: Context): Promise<object | void> | object | void {
+    ctx.app.head.title = '流云辞'
     return getArticleListApi({ page: ctx.query.current_page || 1, rowsPerPage: ctx.query.per_page || 6 }).then((value) => {
       return processArticleList(value)
     })
@@ -86,7 +87,12 @@ export default Vue.extend({
       }
     }
   },
-  methods: {}
+  methods: {},
+  head () {
+    return {
+      head: '流云辞'
+    }
+  }
 })
 </script>
 

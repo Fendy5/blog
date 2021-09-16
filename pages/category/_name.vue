@@ -10,7 +10,7 @@
           </div>
         </div>
         <div class="blog-detail">
-          <nuxt-link :to="`/s/${i.article_id}`">
+          <nuxt-link :title="i.title" :to="`/s/${i.article_id}`">
             <h2>{{ i.title }}</h2>
           </nuxt-link>
           <p>{{ i.summary }}</p>
@@ -79,7 +79,12 @@ export default Vue.extend({
       })
     }
   },
-  methods: {}
+  methods: {},
+  head () {
+    return {
+      title: this.$route.query.t || '流云辞'
+    }
+  }
 })
 
 </script>

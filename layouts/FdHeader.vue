@@ -7,12 +7,12 @@
       </nuxt-link>
       <ul class="nav">
         <li v-for="(i,index) in menuList" :key="index">
-          <nuxt-link exact :class="{'nuxt-link-active': `/category/${$route.params.name && $route.params.name.split('-')[0]}`===i.path}" :to="i.children.length>0?'#':i.path">
+          <nuxt-link exact :class="{'nuxt-link-active': `/category/${$route.params.name && $route.params.name.split('-')[0]}`===i.path}" :to="{path: i.children.length>0?'#':i.path, query: {t:i.name}}">
             <span :class="{'arrow': i.children.length>0}"> {{ i.name }} </span>
           </nuxt-link>
           <ul v-if="i.children" class="sub-menu">
             <li v-for="(x,idx) in i.children" :key="idx">
-              <nuxt-link :to="`/category${x.path}`">
+              <nuxt-link :title="i.name" :to="{path: `/category${x.path}`,query: { t: x.name }}">
                 {{ x.name }}
               </nuxt-link>
             </li>
@@ -30,7 +30,7 @@
     <div :class="{'sub-menu-active': mobileActive}" class="menu-content absolute">
       <ul>
         <li v-for="(i,index) in menuList" :key="index" @click="clickMobileMenu(i.id, i.children.length>0)">
-          <nuxt-link :to="i.children.length>0?'#':i.path">
+          <nuxt-link :to="{path: i.children.length>0?'#':i.path, query:{t: i.name}}">
             {{ i.name }}
             <span v-if="i.children.length>0" :class="[mobileSubMenu===i.id?'plus subtract':'plus']">
               <span class="line1" />
@@ -39,7 +39,7 @@
           </nuxt-link>
           <ul v-if="i.children" :class="[mobileSubMenu===i.id?'sub-menu-open':'sub-menu']">
             <li v-for="(x,idx) in i.children" :key="idx" @click="clickMobileMenu(i.id, false)">
-              <nuxt-link :to="`/category${x.path}`">
+              <nuxt-link :to="{path: `/category${x.path}`,query: { t: x.name }}">
                 {{ x.name }}
               </nuxt-link>
             </li>
