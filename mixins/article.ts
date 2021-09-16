@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { getArticleListApi } from '~/api/article'
+import { Article } from '~/types'
 
 const articleMixin = Vue.extend({
   data () {
@@ -13,22 +13,13 @@ const articleMixin = Vue.extend({
     }
   },
   methods: {
-    handleSizeChange (val: number) {
-      console.log('size change')
-      this.page.per_page = val
-      this.getList()
-    },
-    handleCurrentChange (val: number) {
-      this.page.current_page = val
-      this.$router.push({ query: { per_page: this.page.per_page, current_page: val }, path: '/' })
-      this.getList()
-    },
-    getList (page: number = this.page.current_page, rowsPerPage: number = this.page.per_page) {
-      getArticleListApi({ page, rowsPerPage }).then((value) => {
-        const data = value.data
-        this.articleList = data.data
-        Object.keys(this.page).forEach((key) => { this.page[key] = parseInt(data[key]) })
-      })
+    pageChange (value: Article[]) {
+      this.articleList = value
+    }
+  },
+  head () {
+    return {
+      title: this.title || '流云辞'
     }
   }
 })
