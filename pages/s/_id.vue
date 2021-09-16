@@ -22,12 +22,14 @@
 import Vue from 'vue'
 import { Context } from '@nuxt/types'
 import { getArticleApi } from '~/api/article'
+import { Head } from '~/types'
 
 export default Vue.extend({
   name: 'Article',
   asyncData (ctx: Context): Promise<object | void> | object | void {
     return getArticleApi(ctx.params.id).then((value) => {
-      ctx.app.head.title = value.data.title
+      const head = ctx.app.head as Head
+      head.title = value.data.title
       return { article: value.data }
     })
   },
