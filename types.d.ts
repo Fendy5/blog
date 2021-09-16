@@ -12,3 +12,7 @@ export interface Page {
   per_page: number
   current_page: number
 }
+
+export interface Head {
+  title: string
+}
