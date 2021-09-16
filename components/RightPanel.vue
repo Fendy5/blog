@@ -10,7 +10,7 @@
       <div class="pc-title">笔记分类</div>
       <div class="pc-content">
         <ul class="divide-y divide-gray-300">
-          <li v-for="i in categoryList" :key="i.id"><NuxtLink :title="i.title" :to="`/category${i.path}`">{{ i.name }}({{ i.articles_count }})</NuxtLink></li>
+          <li v-for="i in categoryList" :key="i.id"><NuxtLink :to="{path: `/category${i.path}`, query:{ t: i.name }}">{{ i.name }}({{ i.articles_count }})</NuxtLink></li>
         </ul>
       </div>
     </div>
@@ -19,7 +19,7 @@
       <div class="pc-content">
         <ul class="tag">
           <li v-for="i in tagList" :key="i.id" class="inline-block">
-            <NuxtLink class="tag-item" to="/">{{ i.name }}</NuxtLink>
+            <NuxtLink class="tag-item" :to="{path: `/tag/${i.name}`}">{{ i.name }}</NuxtLink>
           </li>
         </ul>
       </div>
