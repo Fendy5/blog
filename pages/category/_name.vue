@@ -13,17 +13,14 @@ import { processArticleList } from '~/pages/s/common'
 import ArticlePagination from '~/components/ArticlePagination.vue'
 import ArticleList from '~/components/ArticleList.vue'
 import { articleMixin } from '~/mixins/article'
-import { Head } from '~/types'
 
 export default Vue.extend({
   name: 'Category',
   components: { ArticleList, ArticlePagination },
   mixins: [articleMixin],
   asyncData (ctx: Context): Promise<object | void> | object | void {
-    const head = ctx.app.head as Head
-    head.title = ctx.params.name
     return getArticleListApi({ path: ctx.params.name, page: 1, rowsPerPage: 6 }).then((value) => {
-      return processArticleList(value)
+      return Object.assign(processArticleList(value), { title: ctx.query.t })
     })
   },
   data () {

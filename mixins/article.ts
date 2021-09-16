@@ -19,7 +19,7 @@ const articleMixin = Vue.extend({
   },
   head () {
     return {
-      title: this.title || '流云辞'
+      title: this.title
     }
   }
 })
