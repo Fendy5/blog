@@ -26,7 +26,8 @@
       .blog-detail {
         @apply px-6 pb-6 pt-10;
         h2 {
-          @apply text-2xl text-black inline-block font-bold mb-4;
+          @extend .ellipsis;
+          @apply text-2xl text-black inline-block font-bold mb-4 w-full;
         }
         p {
           @extend .ellipsis-2;

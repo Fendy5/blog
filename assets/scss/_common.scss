@@ -41,6 +41,11 @@ html {
   -webkit-line-clamp:2;
   -webkit-box-orient:vertical;
 }
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .wh-25 {
   width: 25px;
   height: 25px;
