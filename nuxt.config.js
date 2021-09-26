@@ -97,6 +97,24 @@ export default {
         }]
       })
     },
+    optimization: {
+      runtimeChunk: 'single',
+      minimize: undefined,
+      minimizer: undefined,
+      splitChunks: {
+        chunks: 'all',
+        automaticNameDelimiter: '.',
+        // name: undefined,
+        minSize: 10000,
+        maxSize: 250000,
+        cacheGroups: {}
+      }
+    },
+    analyze: true, // 使用webpack-bundle-analyzer来可视化包以及如何优化它们
+    // vendor: ['element-ui'],
+    productionSourceMap: false,
+    productionGzip: true,
+    productionGzipExtensions: ['js', 'css', 'svg'],
     babel: {
       plugins: [
         ['component',
