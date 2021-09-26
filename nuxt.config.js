@@ -46,11 +46,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/robots',
-    {
-      UserAgent: '*',
-      Allow: '*'
-    }
+    '@nuxtjs/robots'
   ],
 
   robots: {
