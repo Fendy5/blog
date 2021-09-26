@@ -14,7 +14,7 @@
         <span>{{ article.created_at }}</span>
       </li>
     </ul>
-    <div class="overflow-x-scroll" v-html="article.content" />
+    <div v-highlight class="overflow-x-scroll" v-html="article.content" />
   </div>
 </template>
 
@@ -23,9 +23,11 @@ import Vue from 'vue'
 import { Context } from '@nuxt/types'
 import { getArticleApi } from '~/api/article'
 import { Head } from '~/types'
+import highlight from '~/directive/highlight'
 
 export default Vue.extend({
   name: 'Article',
+  directives: { highlight },
   asyncData (ctx: Context): Promise<object | void> | object | void {
     return getArticleApi(ctx.params.id).then((value) => {
       const head = ctx.app.head as Head
