@@ -76,6 +76,24 @@ html {
     transform: rotate(225deg);
   }
 }
+//a:disabled {
+//  //@apply
+//  background: red;
+//}
+a {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-user-select: none;
+  -moz-user-focus: none;
+  -moz-user-select: none;
+}
+
 pre {
   overflow: auto !important;
+}
+p {
+  @apply py-2;
+}
+hr{
+  @apply border-none my-6;
+  border-top: 1px solid #0d0d0d1a;
 }
