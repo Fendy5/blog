@@ -18,6 +18,7 @@ import FdHeader from '@/layouts/FdHeader.vue'
 import FdFooter from '@/layouts/FdFooter.vue'
 import RightPanel from '~/components/RightPanel.vue'
 import Banner from '~/components/Banner.vue'
+import '@/utils/console'
 
 export default Vue.extend({
   name: 'Layout',
