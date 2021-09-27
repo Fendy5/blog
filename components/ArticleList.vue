@@ -16,12 +16,13 @@
           <p>{{ i.summary }}</p>
           <ul class="divide-x">
             <li class="flex-items-center pr-4">
-              <svg-icon class="wh-25 mr-1" icon-class="sort" />
+              <svg-icon class="mr-1" icon-class="sort" />
               <NuxtLink to="/">算法</NuxtLink>
+              <!--              <NuxtLink :to="{path: i.children.length>0?'#':i.path, query: {t:i.name}}">算法</NuxtLink>-->
             </li>
             <li class="flex-items-center pl-4">
-              <svg-icon class="wh-25 mr-1" icon-class="comment" />
-              <NuxtLink to="/">评论(0)</NuxtLink>
+              <svg-icon class="mr-1" icon-class="tag" />
+              <span v-for="(j,index) in i.tags" :key="index" class="mr-2">{{ j.name }}</span>
             </li>
           </ul>
         </div>
@@ -53,7 +54,7 @@ export default Vue.extend({
   computed: {
     articles (): Article[] {
       return this.list.map((value: any) => {
-        const time = value.updated_at.split(' ')[0].split('-')
+        const time = value.updated_at.split('T')[0].split('-')
         value.month = time[1]
         value.day = time[2]
         return value

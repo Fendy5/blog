@@ -34,9 +34,10 @@
             </div>
             <div class="summary">
               <RouterLink :to="`/s/${i.article_id}`">
-                <p class="truncate w-40">{{ i.title }}</p>
+                <span class="ellipsis inline-block w-40">{{ i.title }}</span>
+                <!--                <p class="truncate w-40">{{ i.title }}</p>-->
               </RouterLink>
-              <p>{{ i.updated_at }}</p>
+              <p>{{ i.updated_at | dataFormat }}</p>
             </div>
           </li>
         </ul>
@@ -50,26 +51,18 @@ import Vue from 'vue'
 import { getTagListApi } from '~/api/tag'
 import { getCategoryListApi } from '~/api/category'
 import { getArticleListApi } from '~/api/article'
+import { dataFormat } from '~/utils'
 
 export default Vue.extend({
   name: 'RightPanel',
+  filters: {
+    dataFormat
+  },
   data () {
     return {
-      recentList: [
-        { id: 1, cover: 'https://image.fendy5.cn/s/pOQRrO72iftvEYI9_0.25.gif', title: '乘积最大子数组乘积最大子数组乘积最大子数组乘积最大', createTime: '2021-02-26 09:27:30' },
-        { id: 2, cover: 'https://image.fendy5.cn/s/pOQRrO72iftvEYI9_0.25.gif', title: '乘积最大子数组乘积最大子数组乘积最大子数组乘积最大', createTime: '2021-02-26 09:27:30' },
-        { id: 3, cover: 'https://image.fendy5.cn/s/pOQRrO72iftvEYI9_0.25.gif', title: '乘积最大子数组乘积最大子数组乘积最大子数组乘积最大', createTime: '2021-02-26 09:27:30' },
-        { id: 4, cover: 'https://image.fendy5.cn/s/pOQRrO72iftvEYI9_0.25.gif', title: '乘积最大子数组乘积最大子数组乘积最大子数组乘积最大', createTime: '2021-02-26 09:27:30' },
-        { id: 5, cover: 'https://image.fendy5.cn/s/pOQRrO72iftvEYI9_0.25.gif', title: '乘积最大子数组乘积最大子数组乘积最大子数组乘积最大', createTime: '2021-02-26 09:27:30' }
-      ],
+      recentList: [],
       categoryList: [],
-      tagList: [
-        { id: 1, name: 'CSS4' },
-        { id: 2, name: 'CSS' },
-        { id: 3, name: 'CSS' },
-        { id: 4, name: 'CSS' },
-        { id: 5, name: 'CSS' }
-      ]
+      tagList: []
     }
   },
   created () {
@@ -97,13 +90,13 @@ export default Vue.extend({
     .pc-content {
       @apply px-6 pt-4 text-gray-700;
       .cover-thumbnail {
-        @apply w-full h-full;
+        width: 100px;
       }
       ul {
         li {
           @apply py-3;
           .summary {
-            @apply flex justify-between flex-col;
+            //@apply flex justify-between flex-col;
           }
         }
       }
