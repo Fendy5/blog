@@ -2,7 +2,7 @@
   <header class="flex font-bold">
     <div class="fd-container z-10 flex-justify-between items-center flex">
       <nuxt-link class="flex-items-center" to="/">
-        <svg-icon class="wh-25" icon-class="logo" />
+        <svg-icon class="wh-25 text-white" icon-class="logo" />
         <span class="text-xl pl-1">流云辞</span>
       </nuxt-link>
       <ul class="nav">

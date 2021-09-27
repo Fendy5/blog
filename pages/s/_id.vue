@@ -6,11 +6,11 @@
     <h2 class="title">{{ article.title }}</h2>
     <ul class="flex text-gray-600 text-sm divide-x">
       <li class="flex-items-center pr-4">
-        <svg-icon class="wh-25 mr-1" icon-class="sort" />
-        <NuxtLink to="/">{{ article.category_id.name }}</NuxtLink>
+        <svg-icon class="mr-1" icon-class="sort" />
+        <span>{{ article.category_id.name }}</span>
       </li>
       <li class="flex-items-center pl-4">
-        <svg-icon class="wh-25 mr-1" icon-class="time" />
+        <svg-icon class="mr-1" icon-class="time" />
         <span>{{ article.created_at }}</span>
       </li>
     </ul>
@@ -61,6 +61,7 @@ export default Vue.extend({
 .app-main {
   @apply mt-12 px-0;
   .blog-left-sidebar {
+    @apply px-4;
     box-shadow: $blog-box-shadow;
     & > * {
       @apply mb-4;

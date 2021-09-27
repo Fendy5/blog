@@ -37,9 +37,10 @@ export default Vue.extend({
 <style scoped>
 svg {
   display: inline-block;
-  width: 5rem;
-  height: 5rem;
-  color: #ffffff;
+  width: 20px;
+  height: 20px;
+  color: #8a8a8a;
+  /*color: #ffffff;*/
   fill: currentColor;
 }
 </style>
