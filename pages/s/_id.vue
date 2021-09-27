@@ -14,7 +14,7 @@
         <span>{{ article.created_at }}</span>
       </li>
     </ul>
-    <div v-highlight class="overflow-x-scroll" v-html="article.content" />
+    <div v-highlight class="overflow-x-auto" v-html="article.content" />
   </div>
 </template>
 
