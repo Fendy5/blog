@@ -26,6 +26,11 @@ export default {
     '@/plugins/svg-icon'
   ],
 
+  loading: {
+    color: 'purple',
+    height: '5px'
+  },
+
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
 

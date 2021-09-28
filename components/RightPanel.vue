@@ -28,14 +28,14 @@
       <div class="pc-title">最近更新</div>
       <div class="pc-content">
         <ul>
-          <li v-for="i in recentList" :key="i.article_id" class="grid-cols-1_2 gap-x-4">
+          <li v-for="i in recentList" :key="i.article_id" class="flex">
             <div class="cover-thumbnail">
               <img :src="i.cover" alt="">
             </div>
             <div class="summary">
               <RouterLink :to="`/s/${i.article_id}`">
-                <span class="ellipsis inline-block w-40">{{ i.title }}</span>
-                <!--                <p class="truncate w-40">{{ i.title }}</p>-->
+                <!--                <span class="ellipsis">{{ i.title }}</span>-->
+                <p class="truncate w-40">{{ i.title }}</p>
               </RouterLink>
               <p>{{ i.updated_at | dataFormat }}</p>
             </div>
@@ -91,12 +91,16 @@ export default Vue.extend({
       @apply px-6 pt-4 text-gray-700;
       .cover-thumbnail {
         width: 100px;
+        height: 50px;
       }
       ul {
         li {
           @apply py-3;
           .summary {
-            //@apply flex justify-between flex-col;
+            @apply ml-4;
+            p {
+              @apply py-0;
+            }
           }
         }
       }
