@@ -36,9 +36,14 @@ export default Vue.extend({
       }
     }
   },
-  created () {
-    Object.keys(this.page).forEach((key) => { this.page[key] = this.tempPage[key] })
+  watch: {
+    tempPage () {
+      Object.keys(this.page).forEach((key) => { this.page[key] = this.tempPage[key] })
+    }
   },
+  // created () {
+  //   Object.keys(this.page).forEach((key) => { this.page[key] = this.tempPage[key] })
+  // },
   methods: {
     handleCurrentChange (val: number) {
       this.page.current_page = val

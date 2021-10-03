@@ -41,9 +41,10 @@ export default Vue.extend({
   methods: {
     getList (page: number = this.page.current_page, rowsPerPage: number = this.page.per_page) {
       getArticleListApi({ page, rowsPerPage }).then((value) => {
-        const data = value.data
-        this.$emit('pageChanged', data.data)
-        Object.keys(this.page).forEach((key) => { this.page[key] = parseInt(data[key]) })
+        const tmp = processArticleList(value)
+        console.log(tmp)
+        this.page = tmp.page
+        this.articleList = tmp.articleList
       })
     }
   }
