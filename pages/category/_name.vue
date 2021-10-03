@@ -1,7 +1,7 @@
 <template>
   <div>
     <article-list :list="articleList" />
-    <article-pagination :temp-page="page" @pageChange="pageChange" />
+    <article-pagination :type="{ path: $route.params.name }" :temp-page="page" @pageChanged="pageChange" />
   </div>
 </template>
 
@@ -19,7 +19,7 @@ export default Vue.extend({
   components: { ArticleList, ArticlePagination },
   mixins: [articleMixin],
   asyncData (ctx: Context): Promise<object | void> | object | void {
-    return getArticleListApi({ path: ctx.params.name, page: 1, rowsPerPage: 6 }).then((value) => {
+    return getArticleListApi({ path: ctx.params.name, page: ctx.query.current_page || 1, rowsPerPage: ctx.query.per_page || 6 }).then((value) => {
       return Object.assign(processArticleList(value), { title: ctx.query.t })
     })
   },

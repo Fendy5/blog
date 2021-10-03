@@ -18,6 +18,10 @@ import { getArticleListApi } from '~/api/article'
 
 export default Vue.extend({
   props: {
+    type: {
+      type: Object,
+      default: () => { return {} }
+    },
     tempPage: {
       type: Object,
       default: () => { return [] }
@@ -42,7 +46,7 @@ export default Vue.extend({
       this.getList()
     },
     getList (page: number = this.page.current_page, rowsPerPage: number = this.page.per_page) {
-      getArticleListApi({ page, rowsPerPage }).then((value) => {
+      getArticleListApi({ page, rowsPerPage, ...this.type }).then((value) => {
         const data = value.data
         this.$emit('pageChanged', data.data)
         Object.keys(this.page).forEach((key) => { this.page[key] = parseInt(data[key]) })
