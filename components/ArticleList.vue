@@ -54,7 +54,7 @@ export default Vue.extend({
   computed: {
     articles (): Article[] {
       return this.list.map((value: any) => {
-        const time = value.updated_at.split('T')[0].split('-')
+        const time = value.created_at.split(' ')[0].split('-')
         value.month = time[1]
         value.day = time[2]
         return value

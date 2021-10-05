@@ -35,9 +35,9 @@
             <div class="summary">
               <RouterLink :to="`/s/${i.article_id}`">
                 <!--                <span class="ellipsis">{{ i.title }}</span>-->
-                <p class="truncate w-40">{{ i.title }}</p>
+                <p class="truncate font-bold w-40">{{ i.title }}</p>
               </RouterLink>
-              <p>{{ i.updated_at | dataFormat }}</p>
+              <p class="text-secondary">{{ i.created_at }}</p>
             </div>
           </li>
         </ul>
@@ -97,7 +97,7 @@ export default Vue.extend({
         li {
           @apply py-3;
           .summary {
-            @apply ml-4;
+            @apply ml-4 flex flex-col justify-between;
             p {
               @apply py-0;
             }
