@@ -27,8 +27,8 @@ export default {
   ],
 
   loading: {
-    color: 'purple',
-    height: '5px'
+    color: 'white',
+    height: '3px'
   },
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
