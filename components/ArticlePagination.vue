@@ -24,7 +24,7 @@ export default Vue.extend({
     },
     tempPage: {
       type: Object,
-      default: () => { return [] }
+      default: () => { return {} }
     }
   },
   data () {
@@ -37,8 +37,11 @@ export default Vue.extend({
     }
   },
   watch: {
-    tempPage () {
-      Object.keys(this.page).forEach((key) => { this.page[key] = this.tempPage[key] })
+    tempPage: {
+      immediate: true,
+      handler () {
+        Object.keys(this.page).forEach((key) => { this.page[key] = this.tempPage[key] })
+      }
     }
   },
   // created () {
