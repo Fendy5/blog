@@ -17,7 +17,7 @@
           <ul class="divide-x">
             <li class="flex-items-center pr-4">
               <svg-icon class="mr-1" icon-class="sort" />
-              <NuxtLink class="lh-20" to="/">算法</NuxtLink>
+              <span>{{ i.category }}</span>
               <!--              <NuxtLink :to="{path: i.children.length>0?'#':i.path, query: {t:i.name}}">算法</NuxtLink>-->
             </li>
             <li class="flex-items-center pl-4">
