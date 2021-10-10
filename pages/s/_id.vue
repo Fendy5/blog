@@ -3,7 +3,7 @@
     <div class="text-center ">
       <img class="cover" :src="article.cover" alt="图片暂无法显示">
     </div>
-    <h2 class="title">{{ article.title }}</h2>
+    <h1 class="title">{{ article.title }}</h1>
     <ul class="flex text-gray-600 text-sm divide-x">
       <li class="flex-items-center pr-4">
         <svg-icon class="mr-1" icon-class="sort" />
@@ -14,7 +14,7 @@
         <span>{{ article.created_at }}</span>
       </li>
     </ul>
-    <div v-highlight class="overflow-x-auto" v-html="article.content" />
+    <div id="write" v-highlight class="overflow-x-auto" v-html="article.content" />
   </div>
 </template>
 
@@ -65,9 +65,6 @@ export default Vue.extend({
     box-shadow: $blog-box-shadow;
     & > * {
       @apply mb-4;
-    }
-    h2 {
-      @apply font-bold text-2xl;
     }
   }
 }
