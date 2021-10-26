@@ -6,6 +6,7 @@ export default {
     title: '流云辞',
     meta: [
       { charset: 'utf-8' },
+      { name: 'theme-color', content: '#562fc7' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '周锋(Fendy)的个人博客，名曰：流云辞，分享生活、技术、音乐、视频等~ ' },
       { hid: 'keywords', name: 'keywords', content: '周锋,Fendy,个人博客,流云辞' }
