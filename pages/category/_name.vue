@@ -1,7 +1,10 @@
 <template>
-  <div>
-    <article-list :list="articleList" />
-    <article-pagination :type="{ path: $route.params.name }" :temp-page="page" @pageChanged="pageChange" />
+  <div class="grid-cols-2_1">
+    <div>
+      <article-list :list="articleList" />
+      <article-pagination :type="{ path: $route.params.name }" :temp-page="page" @pageChanged="pageChange" />
+    </div>
+    <right-panel />
   </div>
 </template>
 

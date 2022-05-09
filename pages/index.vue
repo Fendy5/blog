@@ -1,7 +1,10 @@
 <template>
-  <div>
-    <article-list :list="articleList" />
-    <article-pagination :temp-page="page" @pageChanged="pageChange" />
+  <div class="grid-cols-2_1">
+    <div>
+      <article-list :list="articleList" />
+      <article-pagination :temp-page="page" @pageChanged="pageChange" />
+    </div>
+    <right-panel />
   </div>
 </template>
 
@@ -14,10 +17,11 @@ import { getArticleListApi } from '~/api/article'
 import { articleMixin } from '~/mixins/article'
 import { processArticleList } from '~/pages/s/common'
 import { Head } from '~/types'
+import RightPanel from '~/components/RightPanel.vue'
 
 export default Vue.extend({
   name: 'Home',
-  components: { ArticleList, ArticlePagination },
+  components: { ArticleList, ArticlePagination, RightPanel },
   mixins: [articleMixin],
   asyncData (ctx: Context): Promise<object | void> | object | void {
     const head = ctx.app.head as Head
