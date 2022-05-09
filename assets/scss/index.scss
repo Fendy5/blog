@@ -41,10 +41,49 @@
   }
 
   @media #{$laptop}{
-    & {
-      @apply grid;
-      grid-template-columns: 2fr 1fr;
+    //& {
+    //  @apply grid;
+    //  grid-template-columns: 2fr 1fr;
+    //}
+  }
+}
+
+.right-panel {
+  .panel-card {
+    @apply py-8;
+    box-shadow: $blog-box-shadow;
+    .pc-title {
+      @apply text-xl px-6 pb-4;
+    }
+    .pc-content {
+      @apply px-6 pt-4 text-gray-700;
+      .cover-thumbnail {
+        width: 100px;
+        height: 50px;
+      }
+      ul {
+        li {
+          @apply py-3;
+          .summary {
+            @apply ml-4 flex flex-col justify-between;
+            p {
+              @apply py-0;
+            }
+          }
+        }
+      }
+      .tag {
+        //@apply grid grid-cols-3;
+        li {
+          @apply mr-2;
+          a {
+            @apply rounded;
+          }
+        }
+        .tag-item {
+          @apply px-2 py-1 border-purple-300 border;
+        }
+      }
     }
   }
-
 }

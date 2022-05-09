@@ -26,10 +26,17 @@ html {
 .flex-items-center {
   @apply flex items-center;
 }
-.grid-cols-2_1 {
-  @apply grid;
-  grid-template-columns: 2fr 1fr;
+@media #{$laptop}{
+  .grid-cols-2_1 {
+    @apply grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+  }
+  .right-panel {
+    max-width: 380px;
+  }
 }
+
 .grid-cols-1_2 {
   @apply grid;
   grid-template-columns: 1fr 2fr;
