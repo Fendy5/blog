@@ -1,5 +1,5 @@
 <template>
-  <div class="grid-cols-2_1">
+  <div class="grid-cols-2_1" @click="toggleCatalogue('open')">
     <div class="blog-left-sidebar">
       <div class="text-center ">
         <img class="cover" :src="article.cover" alt="图片暂无法显示">
@@ -52,7 +52,7 @@
         </div>
       </div>
     </div>
-    <div v-if="isMobile()" class="catalogue-icon" @click="toggleCatalogue">
+    <div v-if="isMobile()" class="catalogue-icon" @click.stop="toggleCatalogue">
       <svg-icon v-if="!catalogOpen" icon-class="catalogue" />
       <svg-icon v-else icon-class="close" />
     </div>
@@ -125,8 +125,14 @@ export default Vue.extend({
       this.catalog = titles
     },
     // 移动端切换目录
-    toggleCatalogue () {
-      this.catalogOpen = !this.catalogOpen
+    toggleCatalogue (status?: 'open'| 'close') {
+      if (status === 'open') {
+        console.log(status)
+        this.catalogOpen = false
+      } else {
+        console.log('else')
+        this.catalogOpen = !this.catalogOpen
+      }
     }
   },
   head () {
