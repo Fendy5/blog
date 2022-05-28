@@ -33,6 +33,11 @@ export default {
     height: '3px'
   },
 
+  loadingIndicator: {
+    name: 'chasing-dots',
+    color: 'purple'
+  },
+
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
 
@@ -63,8 +68,8 @@ export default {
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
-    proxy: true,
-    prefix: '/dev-api',
+    // proxy: true,
+    // prefix: '/dev-api',
     credentials: true
   },
 
