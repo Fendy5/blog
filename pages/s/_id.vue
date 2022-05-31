@@ -42,7 +42,7 @@
         <div class="pc-title pt-4">目录结构</div>
         <div class="pt-4 text-gray-700" @click="handleGoTo($event)">
           <div v-for="(item, index) in catalog" :key="index" :style="{ fontSize: 18 * (1 - 0.1 * item.level) + 'px' }">
-            <div class="py-2 pr-6 catalog-item ellipsis cursor-pointer" :data-id="item.id" :style="{ paddingLeft: item.level * 1.5 + 'rem' }">
+            <div class="py-2 pr-6 catalog-item ellipsis cursor-pointer" :data-id="item.id" :class="item.id" :style="{ paddingLeft: item.level * 1.5 + 'rem' }">
               {{ item.title }}
             </div>
           </div>
@@ -60,6 +60,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Context } from '@nuxt/types'
+import _ from 'lodash'
 import { getArticleApi, getArticleListApi } from '~/api/article'
 import { Head } from '~/types'
 import highlight from '~/directive/highlight'
@@ -68,6 +69,7 @@ import { isMobile } from '~/utils'
 interface CatalogueProp {
   id: string,
   title: string,
+  offsetTop: number,
   level: number,
   nodeName: string
 }
@@ -100,8 +102,24 @@ export default Vue.extend({
     const article = document.getElementById('write')
     this.generateCatalogue(article)
     getArticleListApi({ rowsPerPage: 5, page: 1 }).then((value) => { this.recentList = value.data.data })
+    window.addEventListener('scroll', this.onScroll)
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.onScroll)
   },
   methods: {
+    onScroll: _.throttle(function () {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+      this.catalog.forEach((i: CatalogueProp) => {
+        const t = scrollTop - i.offsetTop
+        const e = document.getElementsByClassName(i.id)[0] as HTMLElement
+        if (t >= 200 && t > 0) {
+          e.style.color = '#562fc6'
+        } else {
+          e.style.color = '#5d6677'
+        }
+      })
+    }, 50),
     handleGoTo (e: PointerEvent) {
       const targetId = (e.target as HTMLElement).getAttribute('data-id') as string
       document.getElementById(targetId)?.scrollIntoView()
@@ -109,17 +127,17 @@ export default Vue.extend({
     },
     isMobile,
     generateCatalogue (article: HTMLElement) {
-      const nodes = ['H1', 'H2', 'H3']
+      const nodes = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6']
       const titles: CatalogueProp[] = []
-      article.childNodes.forEach((e, index) => {
+      const catalog = article.childNodes as NodeListOf<HTMLElement>
+      catalog.forEach((e, index) => {
         if (nodes.includes(e.nodeName)) {
           const id = 'header-' + index
-          // @ts-ignore
           e.setAttribute('id', id)
           titles.push({
             id,
-            // @ts-ignore
             title: e.innerHTML,
+            offsetTop: e.offsetTop,
             level: Number(e.nodeName.substring(1, 2)),
             nodeName: e.nodeName
           })
