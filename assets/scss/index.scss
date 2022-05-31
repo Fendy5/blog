@@ -5,6 +5,7 @@
   @apply gap-x-8 my-8;
   .blog-left-sidebar {
     .blog-item {
+      border-radius: 8px;
       box-shadow: $blog-box-shadow;
       //@apply shadow-lg;
       @apply mb-8;
@@ -50,6 +51,7 @@
 
 .right-panel {
   .panel-card {
+    border-radius: 5px;
     @apply py-8;
     box-shadow: $blog-box-shadow;
     .pc-title {

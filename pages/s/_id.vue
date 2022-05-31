@@ -36,25 +36,23 @@
           </ul>
         </div>
       </div>
-      <div v-show="!isMobile() || catalogOpen" :class="isMobile()?'is-fixed':'catalog'">
-        <div class="panel-card divide-y divide-gray-300">
-          <div class="pc-title">目录结构</div>
-          <div class="pt-4 text-gray-700">
-            <template v-for="(item, index) in catalog">
-              <a :key="index" :href="'#' + item.id" :style="{ fontSize: 18 * (1 - 0.1 * item.level) + 'px' }">
-                <div class="py-2 pr-6 catalog-item ellipsis" :style="{ paddingLeft: item.level * 1.5 + 'rem' }">
-                  {{ item.title }}
-                </div>
-              </a>
-            </template>
-            <div v-if="!catalog.length" class="text-center">暂无目录</div>
+      <!--      <div v-show="!isMobile() || catalogOpen" class="is-fixed" :class="!isMobile() || catalogOpen?'':'catalog w-360'">-->
+      <div class="panel-card divide-y divide-gray-300" :class="[isMobile()?'is-fixed':'catalog', catalogOpen?'active overflow-scroll':'']">
+        <!--        <div v-show="!isMobile() || catalogOpen" :class="isMobile()?'is-fixed':'catalog'">-->
+        <div class="pc-title pt-4">目录结构</div>
+        <div class="pt-4 text-gray-700" @click="handleGoTo($event)">
+          <div v-for="(item, index) in catalog" :key="index" :style="{ fontSize: 18 * (1 - 0.1 * item.level) + 'px' }">
+            <div class="py-2 pr-6 catalog-item ellipsis cursor-pointer" :data-id="item.id" :style="{ paddingLeft: item.level * 1.5 + 'rem' }">
+              {{ item.title }}
+            </div>
           </div>
+          <div v-if="!catalog.length" class="text-center">暂无目录</div>
         </div>
       </div>
     </div>
     <div v-if="isMobile()" class="catalogue-icon" @click.stop="toggleCatalogue">
-      <svg-icon v-if="!catalogOpen" icon-class="catalogue" />
-      <svg-icon v-else icon-class="close" />
+      <svg-icon v-if="!catalogOpen" class="text-white" icon-class="catalogue" />
+      <svg-icon v-else class="text-white" icon-class="close" />
     </div>
   </div>
 </template>
@@ -104,6 +102,11 @@ export default Vue.extend({
     getArticleListApi({ rowsPerPage: 5, page: 1 }).then((value) => { this.recentList = value.data.data })
   },
   methods: {
+    handleGoTo (e: PointerEvent) {
+      const targetId = (e.target as HTMLElement).getAttribute('data-id') as string
+      document.getElementById(targetId)?.scrollIntoView()
+      console.log(targetId)
+    },
     isMobile,
     generateCatalogue (article: HTMLElement) {
       const nodes = ['H1', 'H2', 'H3']
@@ -127,10 +130,8 @@ export default Vue.extend({
     // 移动端切换目录
     toggleCatalogue (status?: 'open'| 'close') {
       if (status === 'open') {
-        console.log(status)
         this.catalogOpen = false
       } else {
-        console.log('else')
         this.catalogOpen = !this.catalogOpen
       }
     }
@@ -165,26 +166,35 @@ export default Vue.extend({
     }
   }
 }
+.active {
+  height: 360px !important;
+  box-shadow: 0 12px 20px 10px #c5b5b54d !important;
+}
 .is-fixed {
+  padding: 0 !important;
   position: fixed;
   bottom: 5.5rem;
   background: #ffffff;
   left: 50%;
   width: 90%;
+  height: 0;
+  overflow: hidden;
+  transition: 0.3s;
   transform: translateX(-50%);
   border-radius: 12px;
-  box-shadow: 0 2px 10px 0 #0000001a;
+  //box-shadow: 0 2px 10px 0 #0000001a;
 }
 .catalogue-icon {
   position: fixed;
   bottom: 3.5rem;
   cursor: pointer;
   left: 1.5rem;
-  width: 35px;
-  height: 35px;
-  background: #d3d1d1;
+  width: 40px;
+  height: 40px;
+  background: #5355c7;
   border-radius: 50%;
   text-align: center;
-  line-height: 32px;
+  line-height: 35px;
+  color: white;
 }
 </style>
