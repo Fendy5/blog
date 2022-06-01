@@ -42,7 +42,8 @@
         <div class="pc-title pt-4">目录结构</div>
         <div class="pt-4 text-gray-700" @click="handleGoTo($event)">
           <div v-for="(item, index) in catalog" :key="index" :style="{ fontSize: 18 * (1 - 0.1 * item.level) + 'px' }">
-            <div class="py-2 pr-6 catalog-item ellipsis cursor-pointer" :data-id="item.id" :class="item.id" :style="{ paddingLeft: item.level * 1.5 + 'rem' }">
+            <!--            <div class="py-2 pr-6 catalog-item ellipsis cursor-pointer" :data-id="item.id" :class="item.id" :style="{ paddingLeft: item.level * 1.5 + 'rem' }">-->
+            <div class="py-2 pr-6 catalog-item ellipsis cursor-pointer" :data-id="item.offsetTop" :class="item.id" :style="{ paddingLeft: item.level * 1.5 + 'rem' }">
               {{ item.title }}
             </div>
           </div>
@@ -121,9 +122,17 @@ export default Vue.extend({
       })
     }, 50),
     handleGoTo (e: PointerEvent) {
-      const targetId = (e.target as HTMLElement).getAttribute('data-id') as string
-      document.getElementById(targetId)?.scrollIntoView()
-      console.log(targetId)
+      // const catalogue = (e.target as HTMLElement).getAttribute('data-id') as string
+      // console.log(catalogue)
+      // document.getElementById(catalogue)?.scrollIntoView({ behavior: 'smooth', inline: 'start' })
+      const targetOffTop = (e.target as HTMLElement).getAttribute('data-id')
+      if (targetOffTop) {
+        // document.documentElement.scrollTop = parseInt(targetOffTop)
+        window.scrollTo({
+          top: parseInt(targetOffTop) + 230,
+          behavior: 'smooth'
+        })
+      }
     },
     isMobile,
     generateCatalogue (article: HTMLElement) {
